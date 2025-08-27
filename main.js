@@ -1,23 +1,19 @@
-let cantidadPesos = Number(prompt("ingrese la cantidad de pesos argentinos"));
-
 function convertirMoneda(cantidad, tasaCambio, nombreMonedaDestino) {
-  let resultado = cantidad * tasaCambio;
-  console.log(
-    `${cantidad} pesos argentinos equivalen a ${resultado.toFixed(
-      2
-    )} ${nombreMonedaDestino}`
-  );
-  return resultado;
+  return cantidad * tasaCambio;
 }
 
-let tasaDeCambio = 0.005;
-let nombreCripto = "Pataconex";
+function convertir() {
+  let cantidadPesos = Number(document.getElementById("cantidad").value);
+  let tasaDeCambio = 0.005; // Ejemplo: 1 peso = 0.005 USD
+  let nombreMoneda = "USD";
+  let resultadoDiv = document.getElementById("resultado");
 
-if (!isNaN(cantidadPesos) && cantidadPesos > 0) {
-  let resultado = convertirMoneda(cantidadPesos, tasaDeCambio, nombreCripto);
-  alert(
-    `${cantidadPesos} pesos argentinos equivalen a ${resultado} ${nombreCripto}`
-  );
-} else {
-  alert("El valor debe ser numérico y mayor que 0.");
+  if (cantidadPesos > 0 && !isNaN(cantidadPesos)) {
+    let resultado = convertirMoneda(cantidadPesos, tasaDeCambio, nombreMoneda);
+    resultadoDiv.textContent = `${cantidadPesos} ARS = ${resultado.toFixed(
+      2
+    )} ${nombreMoneda}`;
+  } else {
+    resultadoDiv.textContent = "⚠️ Ingrese un valor numérico mayor que 0.";
+  }
 }
